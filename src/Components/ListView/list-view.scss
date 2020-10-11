@@ -1,0 +1,42 @@
+.list-view-parent{
+    width: 30%;
+    height: 100%;
+    border: 1px solid #ededed;
+    .no-notes{
+        text-align: center;
+        height: 50px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+    .list-item-wrapper{
+        border-bottom: 1px solid #ededed;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .item-content{
+            display: flex;
+            flex-direction: column;
+            word-break: break-all;
+            overflow: hidden;
+        }
+
+        .item-body{
+            font-size: 14px;
+        }
+        .item-title{
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 22px;
+        }
+        .icon-cross{
+            margin-top: 5px;
+            padding-left: 15px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}

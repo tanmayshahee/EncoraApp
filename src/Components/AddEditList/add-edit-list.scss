@@ -1,0 +1,21 @@
+.add-edit-list-main{
+    width: 70%;
+    padding: 15px;
+    border-left: 1px solid #ededed;
+    .button-wrapper{
+        display: flex;
+        justify-content: flex-end;
+        .button-title{
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 85px;
+            border: 1px solid #ededed;
+            border-radius: 8px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
