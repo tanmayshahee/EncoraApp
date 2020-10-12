@@ -7,7 +7,7 @@ import AddEditNotes from './Pages/AddEditNotes/AddEditNotes';
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Route exact path="/" component={App} />
       <Route exact path="/add-edit-notes" component={AddEditNotes} />
     </Router>
