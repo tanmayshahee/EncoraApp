@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Encora Test App",
   "main": "index.js",
-  "homepage": "https://tanmayshahee.github.io/EncoraApp",
+  "homepage": "https://tanmayshahee.github.io/EncoraApp/",
   "scripts": {
     "webpack-dev-server": "webpack-dev-server",
     "start": "webpack-dev-server --mode=development",
