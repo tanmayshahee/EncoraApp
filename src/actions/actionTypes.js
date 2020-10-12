@@ -1,4 +1,5 @@
 export default {
     ADD_NOTE: 'ADD_NOTE',
     DELETE_NOTE: 'DELETE_NOTE',
+    TOGGLE_TOAST: 'TOGGLE_TOAST',
 }

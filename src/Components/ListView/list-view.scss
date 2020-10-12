@@ -1,7 +1,8 @@
 .list-view-parent{
     width: 30%;
-    height: 100%;
+    height: calc(100vh - 55px);
     border: 1px solid #ededed;
+    overflow: auto;
     .no-notes{
         text-align: center;
         height: 50px;

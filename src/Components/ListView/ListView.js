@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {deleteNote} from '../../actions/addEditNotes';
+import {toggleToast} from '../../actions/toast';
 import { ImCancelCircle } from 'react-icons/im'
 ImCancelCircle
 import './list-view.scss';
@@ -8,11 +9,11 @@ import './list-view.scss';
 const ListView = (props) => {
 
     const deleteNote = (item,index) => {
-         console.log(item);
          let itemToDelete = {...item};
          itemToDelete.deletedIndex = index;
          console.log(itemToDelete);
          props.deleteNote(itemToDelete);
+         props.toggleToast({showToast: true, message: 'Note Deleted'});
     }
 
     const renderNotes = () => {
@@ -45,7 +46,7 @@ const ListView = (props) => {
 const mapStateToProps = (state, props) => {
     return {
         ...props,
-        notes: state.notes,
+        notes: state.addEditNotes.notes,
     }
 }
-export default connect(mapStateToProps, {deleteNote})(ListView);
+export default connect(mapStateToProps, {deleteNote, toggleToast})(ListView);

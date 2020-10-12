@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import {addNote} from '../../actions/addEditNotes';
+import {toggleToast} from '../../actions/toast';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './add-edit-list.scss';
@@ -26,6 +27,7 @@ const AddEditList = (props) => {
                 body
             };
             props.addNote(newNote);
+            props.toggleToast({showToast: true, message: 'Note Added'});
             resetForm();
         }
     }
@@ -81,4 +83,4 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps, {addNote})(AddEditList);
+export default connect(mapStateToProps, {addNote, toggleToast})(AddEditList);
