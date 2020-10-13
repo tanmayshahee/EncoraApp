@@ -22,6 +22,10 @@
             flex-direction: column;
             word-break: break-all;
             overflow: hidden;
+            width: 100%;
+            &:hover{
+                cursor: pointer;
+            }
         }
 
         .item-body{

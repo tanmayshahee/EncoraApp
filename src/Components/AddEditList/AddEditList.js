@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { connect } from 'react-redux';
-import {addNote} from '../../actions/addEditNotes';
+import {addNote, editNote, resetNote} from '../../actions/addEditNotes';
 import {toggleToast} from '../../actions/toast';
+import { ImPlus } from 'react-icons/im';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './add-edit-list.scss';
@@ -10,6 +11,14 @@ const AddEditList = (props) => {
     const [validated, setValidated] = useState(false);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+
+    useEffect(()=> {
+        if(props.currentEditableNote.key){
+            setTitle(props.currentEditableNote.title);
+            setBody(props.currentEditableNote.body);
+        }
+
+    },[props.currentEditableNote]);
 
     const handleSubmit = (e) => {
         event.preventDefault();
@@ -21,13 +30,24 @@ const AddEditList = (props) => {
         }else{
             console.log('validation success');
             setValidated(false);
-            let newNote = {
-                key: new Date().getTime(),
-                title,
-                body
-            };
-            props.addNote(newNote);
-            props.toggleToast({showToast: true, message: 'Note Added'});
+            if(props.currentEditableNote.key){
+                let editNote = {
+                    key: props.currentEditableNote.key,
+                    editIndex: props.currentEditableNote.editIndex,
+                    title,
+                    body,
+                }
+                props.editNote(editNote);
+                props.toggleToast({showToast: true, message: 'Note Edited'});
+            }else{
+                let newNote = {
+                    key: new Date().getTime(),
+                    title,
+                    body
+                };
+                props.addNote(newNote);
+                props.toggleToast({showToast: true, message: 'Note Added'});
+            }
             resetForm();
         }
     }
@@ -35,6 +55,7 @@ const AddEditList = (props) => {
     const resetForm = () => {
         setTitle('');
         setBody(''); 
+        props.resetNote();
     }
 
     const onValueChange = (e) => {
@@ -47,7 +68,10 @@ const AddEditList = (props) => {
     return (
         <div className='add-edit-list-main'>
             <div className='button-wrapper'>
-                <div className='button-title' onClick={resetForm}>Add Note</div>
+                <div className='button-title' onClick={resetForm}>
+                   <span className='plus-icon'><ImPlus /></span> 
+                    Add Note
+                </div>
             </div>
 
             <div className='add-edit-list-form'>
@@ -80,7 +104,8 @@ const AddEditList = (props) => {
 const mapStateToProps = (state, props) => {
     return{
         ...props,
+        currentEditableNote: state.addEditNotes.currentEditableNote
     }
 }
 
-export default connect(mapStateToProps, {addNote, toggleToast})(AddEditList);
+export default connect(mapStateToProps, {addNote, toggleToast, editNote, resetNote})(AddEditList);
